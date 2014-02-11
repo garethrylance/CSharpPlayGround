@@ -27,8 +27,9 @@ namespace JobResourcesLimiting
         {
 
             var job = new Job();
-            var limitedProcess = Process.Start(@"..\..\..\CPUBurner\bin\Debug\CPUBurner.exe");
-            //var limitedProcess = Process.Start(@"C:\dev\src\CSharpPlayGround\CPUBurner\bin\Debug");
+            var cpuBurnerProcess = Process.Start(@"..\..\..\CPUBurner\bin\Debug\CPUBurner.exe");
+            var memoryHogProcess = Process.Start(@"..\..\..\MemoryHog\bin\Debug\MemoryHog.exe");
+           
             Thread.Sleep(100);
             /*
             Console.WriteLine("Enter PID");
@@ -36,7 +37,8 @@ namespace JobResourcesLimiting
             var pid = Int32.Parse(pidInput);
              */
 
-            job.AddProcess(limitedProcess.Handle);
+            job.AddProcess(cpuBurnerProcess.Handle);
+            job.AddProcess(memoryHogProcess.Handle);
 
 
             Console.WriteLine("Ending");
@@ -126,17 +128,17 @@ namespace JobResourcesLimiting
                 m_handle = CreateJobObject(ref xx, "testJob");
 
                 JOBOBJECT_BASIC_LIMIT_INFORMATION info = new JOBOBJECT_BASIC_LIMIT_INFORMATION();
-                info.LimitFlags = LimitsFlags.LimitTimeCpu;
+                info.LimitFlags = LimitsFlags.LimitJobTimeJobMemory;
                 info.PerProcessUserTimeLimit = (long)5e7;
 
                 JOBOBJECT_EXTENDED_LIMIT_INFORMATION extendedInfo = new JOBOBJECT_EXTENDED_LIMIT_INFORMATION();
                 extendedInfo.BasicLimitInformation = info;
-                extendedInfo.ProcessMemoryLimit = 10000;
-                extendedInfo.JobMemoryLimit = 10000;
+                extendedInfo.ProcessMemoryLimit = 10000000;
+                extendedInfo.JobMemoryLimit = 10000000;
                 extendedInfo.IoInfo = new IO_COUNTERS();
-                extendedInfo.PeakJobMemoryUsed = 10000;
-                extendedInfo.PeakProcessMemoryUsed = 10000;
-                extendedInfo.ProcessMemoryLimit = 10000;
+                extendedInfo.PeakJobMemoryUsed = 10000000;
+                extendedInfo.PeakProcessMemoryUsed = 10000000;
+                extendedInfo.ProcessMemoryLimit = 10000000;
 
 
                 int length = Marshal.SizeOf(typeof(JOBOBJECT_EXTENDED_LIMIT_INFORMATION));

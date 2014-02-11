@@ -8,11 +8,12 @@ namespace JobResourcesLimiting
 {
     internal class LimitsFlags
     {
-       public const uint JOB_OBJECT_LIMIT_ACTIVE_PROCESS = 0x00000008;
-       public const uint JOB_OBJECT_LIMIT_JOB_MEMORY = 0x00000200;
-       public const uint JOB_OBJECT_LIMIT_JOB_TIME = 0x00000040;
-       public const uint LimitTimeCpu = 8706;
- 
- 
+       public const uint LimitActiveProcess = 8;
+       public const uint LimitJobTime = 64;
+       public const uint LimitJobMemory = 512;
+       public const uint LimitKillOnJobClose =8192;
+       public const uint LimitJobTimeJobMemory = 8706;
+
+
     }
 }

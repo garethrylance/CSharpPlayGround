@@ -13,21 +13,17 @@ namespace MemoryHog
 
             var bucket = new List<string>();
 
-            const string longString = "sdddddddddddddddddddddddddddddddddddddddddddddddddddhdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
-                                      "sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
-                                      "sdddddddddddddddddddddddddddddddddddddddddddddddddddddjddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
-                                      "sdddddddddddddddddddddddddddddddddddddddddddddddddddhddddddddddddddddddddkdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
-                                      "sdddddddddddddddddddddddddddddddddddddddddddddddfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
-                                      "sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
+            const string longString =
+                "sdddddddddddddddddddddddddddddddddddddddddddddddddddhdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
             int i = 0;
             var startTime = DateTime.Now;
             try
             {
-                for (i = 0; i < 10000000000000000; i++)
+                for (i = 0; i < 1000000000000; i++)
                 {
                     bucket.Add(longString + Guid.NewGuid());
 
-                    if (i % 100000 == 0 && i != 0)
+                    if (i % 10 == 0 && i != 0)
                     {
                         Console.WriteLine("{0}:{1}", i, (DateTime.Now - startTime).TotalSeconds);
                     }
