@@ -7,33 +7,27 @@ namespace MemoryHog
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Press a Key to Start");
-            Console.ReadLine();
             Console.WriteLine("Starting");
 
-            var bucket = new List<string>();
-
-            const string longString =
-                "sdddddddddddddddddddddddddddddddddddddddddddddddddddhdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
             int i = 0;
             var startTime = DateTime.Now;
-            try
-            {
+
+                var barrel = new List<Object>();
+
+
                 for (i = 0; i < 1000000000000; i++)
                 {
-                    bucket.Add(longString + Guid.NewGuid());
 
-                    if (i % 10 == 0 && i != 0)
+                    var bucket = new List<string>();
+
+                    for (var y = 0; y < 100000; y++)
                     {
-                        Console.WriteLine("{0}:{1}", i, (DateTime.Now - startTime).TotalSeconds);
+                        bucket.Add(Guid.NewGuid().ToString());
                     }
+                    Console.WriteLine("bucket {0}:{1}", i, (DateTime.Now - startTime).TotalSeconds);
+                    barrel.Add(bucket);
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                Console.WriteLine(i);
-            }
+
 
             Console.WriteLine("Ending");
             Console.ReadLine();

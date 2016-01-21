@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO_COUNTERS.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="JobObjectInfoType.cs" />
+    <Compile Include="JOBOBJECT_BASIC_LIMIT_INFORMATION.cs" />
+    <Compile Include="JOBOBJECT_EXTENDED_LIMIT_INFORMATION.cs" />
     <Compile Include="LimitsFlags.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SECURITY_ATTRIBUTES.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

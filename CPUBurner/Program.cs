@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace CPUBurner
 {
@@ -6,20 +7,42 @@ namespace CPUBurner
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Press a Key to Start");
-            Console.ReadLine();
+           
             Console.WriteLine("Starting");
 
-            int i = 0;
+  
+            var threadProc = new ThreadStart(Burn);
+
+            for (var n = 0; n < 4; n++)
+            {
+                var thread  = new Thread(threadProc);
+                thread.Priority = ThreadPriority.Highest;
+                thread.Name = string.Format("Burn-{0}", n);
+                thread.IsBackground = true; // Not important enough to hold process running.
+                thread.Start();
+            }
+          
+            Console.WriteLine("Ending");
+            Console.ReadLine();
+        }
+
+
+
+        private static void Burn()
+        {
+            var i = 1L;
             var startTime = DateTime.Now;
             try
             {
-                for (i = 0; i < 10000000000000000; i++)
+                for (; i < 10000000000000000; i++)
                 {
-                    if (i % 100000 == 0 && i != 0)
+                    for (var y = 1.0; y < 10000; )
                     {
-                        Console.WriteLine("{0}:{1}", i, (DateTime.Now - startTime).TotalSeconds);
+                        y = y + 0.1;
                     }
+
+                    Console.WriteLine("{0}:{1}", i, (DateTime.Now - startTime).TotalSeconds);
+
                 }
             }
             catch (Exception ex)
@@ -28,8 +51,14 @@ namespace CPUBurner
                 Console.WriteLine(i);
             }
 
-            Console.WriteLine("Ending");
-            Console.ReadLine();
+
+
+
         }
+
+
+
+
+
     }
 }
